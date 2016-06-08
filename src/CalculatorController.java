@@ -11,11 +11,10 @@ public class CalculatorController implements Initializable {
 
     @FXML
     private Label label;
-    private String input;
-    private Boolean clearFlag;
+    private String input = "";
+    private Boolean clearFlag = false;
 
     public void initialize(URL url, ResourceBundle resourcebundle) {
-        update_input("");
     }
 
     private void update_input(String add) {
@@ -126,14 +125,12 @@ public class CalculatorController implements Initializable {
         }
     }
 
-
-
     @FXML
     private void on_button_EQUAL(ActionEvent event) {
         if (input.equals("Error"))
             return;
         try {
-            BigDecimal result = Calculation.calculate(input+ "=");
+            BigDecimal result = Calculation.calculate(input + "=");
             input = result.toPlainString();
         } catch (Exception e) {
             input = "Error";
