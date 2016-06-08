@@ -1,0 +1,79 @@
+options
+{
+    static = false;
+}
+PARSER_BEGIN(Parser)
+import java.io.*;
+import java.math.BigDecimal;
+public class Parser {
+}
+PARSER_END(Parser)
+SKIP: {
+  " " | "\n" | "\r"
+}
+TOKEN: {
+    <NUM : ("0"|["1"-"9"](["0"-"9"])*)("."(["0"-"9"])+)? >
+ |  <PLUSOP : "+" >
+ |  <MINUSOP : "-" >
+ |  <MULOP : "*" >
+ |  <DIVOP : "/" >
+ |  <OPEN : "(">
+ |  <CLOSE : ")">
+ |  <EQOP : "=" >
+}
+public Node start() :
+{
+    Node root; 
+}
+{
+    root = sum()
+    <EQOP> {return root;}
+}
+public Node sum() :
+{
+    Node root, node;
+}
+{
+    root = prod()
+    (<PLUSOP> node = prod() {
+        root = Op.connectToLeft(root);
+        root.setOp('+');
+        root.addRight(node);
+    }| <MINUSOP> node = prod() {
+        root = Op.connectToLeft(root);
+        root.setOp('-');
+        root.addRight(node);
+    })* {return root;}
+}
+private Node prod() :
+{
+    Node node, root;
+}
+{
+    root = value()
+    (<MULOP> node = value() {
+        root = Op.connectToLeft(root);
+        root.setOp('*');
+        root.addRight(node);
+    }| <DIVOP> node = value() {
+        root = Op.connectToLeft(root);
+        root.setOp('/');
+        root.addRight(node);
+    })*
+    {return root;}
+}
+private Node value() :
+{
+    Node node;
+}
+{
+    node = num() {return node;}
+    | <OPEN> node = sum() <CLOSE> {return node;}
+}
+private Node num() :
+{
+    Token token;
+}
+{
+    token = <NUM> { return new Num(new BigDecimal(token.image));}
+}
