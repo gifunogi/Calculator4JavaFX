@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    public static void main(String arg[]) {
+    public static void main(String arg[]) throws ParseException {
         launch(arg);
     }
 

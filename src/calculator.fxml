@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CalculatorController">
    <children>
-      <Label fx:id="label" alignment="CENTER_RIGHT" contentDisplay="BOTTOM" maxWidth="1.7976931348623157E308">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
+      <SplitPane dividerPositions="0.5" focusTraversable="false" maxWidth="1.7976931348623157E308" prefHeight="55.0">
+         <items>
+            <Label fx:id="label_mark" alignment="CENTER" prefHeight="53.0" prefWidth="39.0" wrapText="true">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="label_input" alignment="CENTER_RIGHT" contentDisplay="BOTTOM" maxWidth="1.7976931348623157E308" textAlignment="RIGHT">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+         </items>
+      </SplitPane>
       <GridPane alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="375.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -28,83 +40,103 @@
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on_button7" text="7" GridPane.rowIndex="1">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+            </Button>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on_button8" text="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+            </Button>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on_button4" text="4" GridPane.rowIndex="2">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+            </Button>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on_button5" text="5" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+            </Button>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on_button1" text="1" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+            </Button>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on_button_OPEN" text="(" GridPane.rowIndex="4">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+            </Button>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on_button2" text="2" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+            </Button>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on_button0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+            </Button>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on_button9" text="9" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+            </Button>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on_button6" text="6" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+            </Button>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on_button3" text="3" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+            </Button>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on_button_CLOSE" text=")" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+            </Button>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on_button_MUL" text="*" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+            </Button>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on_button_MINUS" text="-" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+            </Button>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on_button_PLUS" text="+" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+            </Button>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on_button_EQUAL" text="=" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+            </Button>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on_button_CLEAR" text="C" GridPane.columnIndex="1">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+            </Button>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on_button_POINT" text=".">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+            </Button>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on_button_DEL" text="DEL" GridPane.columnIndex="2">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+            </Button>
             <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#on_button_DIV" text="/" GridPane.columnIndex="3">
                <font>
                   <Font size="24.0" />
-               </font></Button>
+               </font>
+            </Button>
          </children>
       </GridPane>
    </children>

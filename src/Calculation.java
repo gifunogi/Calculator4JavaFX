@@ -6,13 +6,11 @@ import java.math.MathContext;
 public class Calculation {
 
     public static BigDecimal calculate(String input) throws ParseException {
+        input = ("(" + input + ")=").replace("(-", "(#");System.out.println(input);
         Reader r = new StringReader(input);
         Parser parser = new Parser(r);
         Node tree = parser.start();
-        if (tree == null) {
-            return BigDecimal.ZERO;
-        }
-        return tree.eval().stripTrailingZeros();
+        return tree.eval();
     }
 }
 
@@ -85,18 +83,18 @@ class Op extends Node {
             rightValue = right.eval();
         switch (op) {
             case '+':
-                value = leftValue.add(rightValue, MathContext.DECIMAL128);
+                value = leftValue.add(rightValue, MathContext.DECIMAL64);
                 break;
             case '-':
-                value = leftValue.subtract(rightValue, MathContext.DECIMAL128);
+                value = leftValue.subtract(rightValue, MathContext.DECIMAL64);
                 break;
             case '*':
-                value = leftValue.multiply(rightValue, MathContext.DECIMAL128);
+                value = leftValue.multiply(rightValue, MathContext.DECIMAL64);
                 break;
             case '/':
-                value = leftValue.divide(rightValue, MathContext.DECIMAL128);
+                value = leftValue.divide(rightValue, MathContext.DECIMAL64);
                 break;
         }
-        return value;
+        return value.stripTrailingZeros();
     }
 }

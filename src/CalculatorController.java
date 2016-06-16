@@ -1,5 +1,6 @@
 import java.math.BigDecimal;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -10,7 +11,9 @@ import javafx.scene.control.Label;
 public class CalculatorController implements Initializable {
 
     @FXML
-    private Label label;
+    private Label label_input;
+    @FXML
+    private Label label_mark;
     private String input = "";
     private Boolean clearFlag = false;
 
@@ -21,9 +24,10 @@ public class CalculatorController implements Initializable {
         if (clearFlag) {
             input = "";
             clearFlag = false;
+            label_mark.setText("");
         }
         input += add;
-        label.setText(input);
+        label_input.setText(input);
     }
 
     @FXML
@@ -113,13 +117,13 @@ public class CalculatorController implements Initializable {
 
     @FXML
     private void on_button_CLEAR(ActionEvent event) {
-        input = "";
+        clearFlag = true;
         update_input("");
     }
 
     @FXML
     private void on_button_DEL(ActionEvent event) {
-        if (!input.isEmpty()) {
+        if (!input.isEmpty() || !Objects.equals(input, "")) {
             input = input.substring(0, input.length() - 1);
             update_input("");
         }
@@ -127,13 +131,21 @@ public class CalculatorController implements Initializable {
 
     @FXML
     private void on_button_EQUAL(ActionEvent event) {
-        if (input.equals("Error"))
+        if (clearFlag || input.equals("") || input.isEmpty()) {
             return;
+        }
         try {
-            BigDecimal result = Calculation.calculate(input + "=");
+            BigDecimal result = Calculation.calculate(input);
             input = result.toPlainString();
-        } catch (Exception e) {
-            input = "Error";
+            label_mark.setText("=");
+        } catch (ParseException e) {
+            // e.printStackTrace();
+            input = "Syntax Error";
+            label_mark.setText("E");
+        } catch (ArithmeticException e) {
+            // e.printStackTrace();
+            input = "Div-by-zero";
+            label_mark.setText("E");
         }
         update_input("");
         clearFlag = true;

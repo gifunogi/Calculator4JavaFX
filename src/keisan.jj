@@ -12,18 +12,20 @@ SKIP: {
   " " | "\n" | "\r"
 }
 TOKEN: {
-    <NUM : ("0"|["1"-"9"](["0"-"9"])*)("."(["0"-"9"])+)? >
- |  <PLUSOP : "+" >
- |  <MINUSOP : "-" >
- |  <MULOP : "*" >
- |  <DIVOP : "/" >
- |  <OPEN : "(">
- |  <CLOSE : ")">
- |  <EQOP : "=" >
+    <PLUSOP : "+" >
+    | <MINUSOP : "-" >
+    | <MULOP : "*" >
+    | <DIVOP : "/" >
+    | <OPEN : "(" >
+    | <CLOSE : ")" >
+    | <EQOP : "="  >
+    | <MINUSSIGN : "#" >
+    | <#DOT : "." >
+    | <NUM : ("0"|["1"-"9"](["0"-"9"])*)(<DOT>(["0"-"9"])+)? >
 }
 public Node start() :
 {
-    Node root; 
+    Node root;
 }
 {
     root = sum()
@@ -76,4 +78,5 @@ private Node num() :
 }
 {
     token = <NUM> { return new Num(new BigDecimal(token.image));}
+    | <MINUSSIGN> token = <NUM> { return new Num(new BigDecimal(token.image).negate());}
 }
